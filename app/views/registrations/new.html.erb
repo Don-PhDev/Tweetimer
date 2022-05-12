@@ -1,0 +1,22 @@
+<h1>Sign Up</h1>
+
+<%= form_for @user, url: sign_up_path do |f| %>
+  <div class="mb-3">
+    <%= f.label :email, class: "form-label" %>
+    <%= f.email_field :email, class: "form-control", autofocus: true %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :password, class: "form-label" %>
+    <%= f.password_field :password, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :password_confirmation, class: "form-label" %>
+    <%= f.password_field :password_confirmation, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.submit "Sign Up", class: "btn btn-primary" %>
+  </div>
+<% end %>
