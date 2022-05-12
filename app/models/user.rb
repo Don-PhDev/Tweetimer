@@ -5,7 +5,8 @@ class User < ApplicationRecord
     presence: true,
     uniqueness: true,
     format: {
-      with: /\A[^@\s]+@[^@\s]+\z/,
+      with: URI::MailTo::EMAIL_REGEXP,
+      # with: /\A[^@\s]+@[^@\s]+\z/,
       message: "must be a valid email address"
     }
 end
