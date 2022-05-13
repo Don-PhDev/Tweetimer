@@ -12,4 +12,26 @@ class PasswordResetsController < ApplicationController
     redirect_to root_path,
       notice: "We have sent an email with instructions on how to reset your password in a few minutes."
   end
+
+  def edit
+    @user = User.find_signed!(params[:token], purpose: "password_reset")
+  rescue ActiveSupport::MessageVerifier::InvalidSignature
+    redirect_to sign_in_path, alert: "Your token has expired. Please request a new password reset link."
+  end
+
+  def update
+    @user = User.find_signed!(params[:token], purpose: "password_reset")
+
+    if @user.update(password_params)
+      redirect_to sign_in_path, notice: "You have successfully reset your password."
+    else
+      render :edit
+    end
+  end
+
+  private
+
+  def password_params
+    params.require(:user).permit(:password, :password_confirmation)
+  end
 end
