@@ -4,8 +4,9 @@ Rails.application.routes.draw do
   get "sign_up", to: "registrations#new"
   post "sign_up", to: "registrations#create"
 
-  get "edit_password", to: "passwords#edit", as: :edit_password
-  patch "edit_password", to: "passwords#update"
+  get "password", to: "passwords#edit"
+  get "password/edit", to: "passwords#edit"
+  patch "password/edit", to: "passwords#update"
 
   get "sign_in", to: "sessions#new"
   post "sign_in", to: "sessions#create"
