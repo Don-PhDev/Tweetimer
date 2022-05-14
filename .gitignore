@@ -43,3 +43,5 @@ yarn-debug.log*
 *.njsproj
 *.sln
 *.sw?
+
+/config/credentials/development.key
